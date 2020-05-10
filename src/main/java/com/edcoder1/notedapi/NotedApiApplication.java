@@ -14,7 +14,7 @@ public class NotedApiApplication {
 		SpringApplication.run(NotedApiApplication.class, args);
 	}
 
-	@GetMapping("/hello")
+	@GetMapping("/hello000")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		System.out.println("FFF");
 		return String.format("Hello-000 %s!", name);
