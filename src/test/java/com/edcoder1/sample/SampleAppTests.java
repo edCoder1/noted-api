@@ -1,10 +1,10 @@
-package com.edcoder1.notedapi;
+package com.edcoder1.sample;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NotedApiApplicationTests {
+class SampleAppTests {
 
 	@Test
 	void contextLoads() {
