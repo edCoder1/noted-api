@@ -2,8 +2,10 @@ package noted.services;
 
 import noted.db.NotesRepository;
 import noted.model.Note;
+import noted.model.Notebook;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,9 +18,11 @@ public class NoteService {
         this._noteRepository = noteRepository;
     }
 
-    public UUID createNote(String title, String text) throws Throwable{
+    public UUID createNote(String title, String text, String notebookId) throws Throwable{
         try{
-            Note createdNote = new Note(title, text);
+            // Add note to notebook
+            Note createdNote = new Note(title, text, notebookId);
+
 
             System.out.println(createdNote);
             System.out.println(createdNote.getId());
@@ -33,6 +37,10 @@ public class NoteService {
         }
     }
 
+    public void addNoteToNotebook(Note note, Notebook notebook){
+
+    }
+
     public List<Note> getAllNotes() {
         return this._noteRepository.findAll();
     }
@@ -40,7 +48,7 @@ public class NoteService {
     public Note getOneByID(String id) {
         boolean present = this._noteRepository.findById(UUID.fromString(id)).isPresent();
         if (!present) {
-            return null;
+            throw new EntityNotFoundException("Did not find any note with id " + id);
         }
 
         return this._noteRepository.findById(UUID.fromString(id)).get();

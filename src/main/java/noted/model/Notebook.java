@@ -24,6 +24,10 @@ public class Notebook {
     private String name;
     private Note[] notes = {};
 
+    //  Required for @Entity
+    public Notebook() {
+    }
+
     public Notebook(String name) {
         this.id = UUID.randomUUID();
         this.name = name;
