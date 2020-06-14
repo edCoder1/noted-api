@@ -9,6 +9,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin
 @RestController()
 @RequestMapping(value = "/api")
 public class NoteController {
@@ -18,7 +19,6 @@ public class NoteController {
     public NoteController(NoteService notesService) {
         this._notesService = notesService;
     }
-
 
     @RequestMapping(value = "/note/all", method = RequestMethod.GET)
     public List<Note> getAll() {
@@ -32,9 +32,9 @@ public class NoteController {
 
     @RequestMapping(value = "/note", method = RequestMethod.POST)
     public UUID createNote(@RequestBody NoteDTO newNote) throws Throwable {
-        try{
+        try {
             return this._notesService.createNote(newNote.title, newNote.text, newNote.notebook_id);
-        } catch(Throwable ex) {
+        } catch (Throwable ex) {
             throw new Throwable(ex);
         }
     }

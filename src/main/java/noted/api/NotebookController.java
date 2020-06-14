@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api")
 public class NotebookController {
@@ -18,7 +19,7 @@ public class NotebookController {
     }
 
     @RequestMapping(value = "/notebook/all", method = RequestMethod.GET)
-    public List<Notebook> getAllNotebooks(){
+    public List<Notebook> getAllNotebooks() {
         return this._notebookService.getAll();
     }
 
@@ -27,14 +28,13 @@ public class NotebookController {
         return this._notebookService.getById(id);
     }
 
-
     @RequestMapping(value = "/notebook", method = RequestMethod.POST)
     public Notebook createNotebook(@RequestBody NotebookDTO notebook) {
         return this._notebookService.createNotebook(notebook.name);
     }
 
     @RequestMapping(value = "/notebook/addNotes/{id}", method = RequestMethod.POST)
-    public Notebook addNotes(@PathVariable String id){
+    public Notebook addNotes(@PathVariable String id) {
         return this._notebookService.addNotes(id);
     }
 }
