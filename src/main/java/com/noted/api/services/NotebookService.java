@@ -1,20 +1,28 @@
-package noted.services;
+package com.noted.api.services;
 
-import noted.db.NotebooksRepository;
-import noted.model.Notebook;
+import com.noted.api.db.NotebooksRepository;
+import com.noted.api.interfaces.INotebookService;
+import com.noted.api.model.Notebook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
 @Component
-public class NotebookService {
+public class NotebookService implements INotebookService {
 
-    private final NotebooksRepository _notesRepository;
+    @Autowired
+    private NotebooksRepository _notesRepository;         // This replaces below commented code.. or is it vice versa?
 
-    public NotebookService(NotebooksRepository notebooksRepository) {
-        this._notesRepository = notebooksRepository;
+    public NotebookService() {
     }
+
+//    private final NotebooksRepository _notesRepository;
+
+//    public NotebookService(NotebooksRepository notebooksRepository) {
+//        this._notesRepository = notebooksRepository;
+//    }
 
     public List<Notebook> getAll(){
         return this._notesRepository.findAll();

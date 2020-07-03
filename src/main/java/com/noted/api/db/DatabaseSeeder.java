@@ -1,7 +1,7 @@
-package noted.db;
+package com.noted.api.db;
 
-import noted.model.Note;
-import noted.model.Notebook;
+import com.noted.api.model.Note;
+import com.noted.api.model.Notebook;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

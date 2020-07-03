@@ -1,4 +1,4 @@
-package noted.api.DTO;
+package com.noted.api.api.DTO;
 
 public class NoteDTO {
     public String title;

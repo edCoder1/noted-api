@@ -1,8 +1,9 @@
-package noted.api;
+package com.noted.api.api;
 
-import noted.api.DTO.NotebookDTO;
-import noted.model.Notebook;
-import noted.services.NotebookService;
+import com.noted.api.api.DTO.NotebookDTO;
+import com.noted.api.model.Notebook;
+import com.noted.api.services.NotebookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,11 +12,14 @@ import java.util.List;
 @RequestMapping(value = "/api")
 public class NotebookController {
 
-    private NotebookService _notebookService;
+    @Autowired
+    private NotebookService _notebookService;   // This replaces below commented code.. or is it vice versa?
 
-    public NotebookController(NotebookService notebookService) {
-        this._notebookService = notebookService;
-    }
+//    private NotebookService _notebookService;
+//
+//    public NotebookController(NotebookService notebookService) {
+//        this._notebookService = notebookService;
+//    }
 
     @RequestMapping(value = "/notebook/all", method = RequestMethod.GET)
     public List<Notebook> getAllNotebooks(){
