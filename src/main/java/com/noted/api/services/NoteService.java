@@ -1,8 +1,8 @@
-package noted.services;
+package com.noted.api.services;
 
-import noted.db.NotesRepository;
-import noted.model.Note;
-import noted.model.Notebook;
+import com.noted.api.model.Note;
+import com.noted.api.model.Notebook;
+import com.noted.api.db.NotesRepository;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;

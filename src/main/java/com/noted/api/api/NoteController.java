@@ -1,8 +1,8 @@
-package noted.api;
+package com.noted.api.api;
 
-import noted.api.DTO.NoteDTO;
-import noted.model.Note;
-import noted.services.NoteService;
+import com.noted.api.api.DTO.NoteDTO;
+import com.noted.api.model.Note;
+import com.noted.api.services.NoteService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;

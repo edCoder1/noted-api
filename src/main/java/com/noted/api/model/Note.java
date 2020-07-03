@@ -1,4 +1,4 @@
-package noted.model;
+package com.noted.api.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
