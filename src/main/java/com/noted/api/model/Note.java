@@ -15,14 +15,14 @@ public class Note {
     private String title;
     private String text;
 
-//    private String notebookId;
+    // private String notebookId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Notebook notebook;
 
     private Date lastModifiedOn;
 
-//  Required for @Entity
+    // Required for @Entity
     public Note() {
     }
 
@@ -31,19 +31,19 @@ public class Note {
         this.text = text;
         this.id = UUID.randomUUID();
         this.lastModifiedOn = new Date();
-//        this.notebookId = notebookId;
+        // this.notebookId = notebookId;
 
-//        this.notebook.
+        // this.notebook.
 
-//        System.out.println(this.notebook.getNotes().toString());
+        // System.out.println(this.notebook.getNotes().toString());
     }
 
-    public Note(String title, String text, Notebook notebook){
+    public Note(String title, String text, Notebook notebook) {
         this.title = title;
         this.text = text;
         this.id = UUID.randomUUID();
         this.lastModifiedOn = new Date();
-//        this.notebookId = notebookId;
+        // this.notebookId = notebookId;
 
         this.notebook = notebook;
     }
@@ -64,8 +64,8 @@ public class Note {
         return lastModifiedOn;
     }
 
-//    public String getNotebookId() {
-//        return this.notebookId;
-//    }
+    // public String getNotebookId() {
+    // return this.notebookId;
+    // }
 
 }
