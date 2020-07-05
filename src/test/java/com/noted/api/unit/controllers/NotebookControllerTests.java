@@ -14,7 +14,7 @@ public class NotebookControllerTests {
     }
 
     @Test
-    public void getAllNotebooks_Basic() {
+    public void getAllNotebooks_BASIC() {
 
     }
 }

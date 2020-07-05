@@ -40,4 +40,9 @@ public class Notebook {
         return notes;
     }
 
+    public String setName(String newName) {
+        this.name = newName;
+        return newName;
+    }
+
 }
