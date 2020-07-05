@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-// import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -50,12 +49,32 @@ public class NotebookService implements INotebookService {
         return notebook;
     }
 
-    public Notebook updateNotebook(Notebook notebook) {
-        Notebook notebooktoUpdate = this._notebooksRepository.save(notebook);
-        return notebooktoUpdate;
+    public Notebook updateNotebook(String id, String newName) {
+        // Notebook notebooktoUpdate = this._notebooksRepository.save(notebook);
+
+        // better ?
+        Notebook notebook = this._notebooksRepository.findById(UUID.fromString(id)).orElse(null);
+
+        System.out.println(notebook);
+
+        if (notebook != null) {
+            System.out.println(notebook.getName());
+            notebook.setName(newName);
+            this._notebooksRepository.save(notebook);
+            System.out.println(notebook.getName());
+        }
+
+        return notebook;
     }
 
-    public void deleteNotebook(String id) {
-        this._notebooksRepository.deleteById(UUID.fromString(id));
+    public Notebook deleteNotebook(String id) {
+        Notebook notebook = this._notebooksRepository.findById(UUID.fromString(id)).orElse(null);
+
+        if (notebook != null) {
+            System.out.println(notebook.getName());
+            this._notebooksRepository.deleteById(UUID.fromString(id));
+        }
+
+        return notebook;
     }
 }
