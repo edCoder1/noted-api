@@ -32,11 +32,7 @@ public class NoteController {
 
     @RequestMapping(value = "/note", method = RequestMethod.POST)
     public UUID createNote(@RequestBody NoteDTO newNote) throws Throwable {
-        try {
-            return this._notesService.createNote(newNote.title, newNote.text, newNote.notebook_id);
-        } catch (Throwable ex) {
-            throw new Throwable(ex);
-        }
+        return this._notesService.createNote(newNote.title, newNote.text, newNote.notebook_id);
     }
 
 }

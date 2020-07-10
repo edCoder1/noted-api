@@ -10,8 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -42,14 +41,17 @@ public class NotebookServiceTests {
     @Test
     public void getById_BASIC() {
 
-        final UUID id = UUID.fromString("d7dc99ab-3588-4462-ba3d-3676266eb277");
+        final UUID id = UUID.fromString("d7dc99ab-3588-4462-ba3d-3676266eb277"); // UUID are random... so this will
+                                                                                 // never be found
         final String idString = id.toString();
+        final Notebook expected = new Notebook("SOME NOTEBOOK");
 
-        when(repository.findById(id)).thenReturn(Optional.of(new Notebook("SOME NOTEBOOK")));
+        when(repository.findById(id)).thenReturn(Optional.ofNullable(expected)); // Mocking the expeted result and
+                                                                                 // asserting it below
 
         final Notebook actual = this.service.getById(idString);
 
-        assertEquals("SOME NOTEBOOK", actual.getName());
+        assertEquals(expected.getId(), actual.getId());
     }
 
     @Test
@@ -64,7 +66,7 @@ public class NotebookServiceTests {
         // NOT Necessary don't know why
         // when(repository.save(createdNotebook)).thenReturn(savedNotebook);
 
-        assertEquals(null, savedNotebook.getNotes());
+        assertEquals("NEW ONE", savedNotebook.getName());
     }
 
     @Test
@@ -81,16 +83,10 @@ public class NotebookServiceTests {
     @Test
     public void deleteNotebook() {
 
-        final Notebook notebook_01 = new Notebook("1");
-        final Notebook notebook_02 = new Notebook("2");
-        final Notebook notebook_03 = new Notebook("3");
+        Notebook actual = this.service.deleteNotebook("996171cc-93e4-4141-ae97-8d7da7ca0889");
 
-        when(repository.findAll()).thenReturn(Arrays.asList(notebook_01, notebook_02, notebook_03)); // Something weird
-                                                                                                     // happening here?
-
-        this.service.deleteNotebook(notebook_02.getId().toString());
-
-        assertEquals(2, this.service.getAll().toArray().length);
+        // asserting that a non existing UUID doesn't break the app
+        assertNull(actual);
     }
 
 }
