@@ -29,7 +29,9 @@ public class NotebookController {
 
     @RequestMapping(value = "/notebook/all", method = RequestMethod.GET)
     public List<Notebook> getAllNotebooks() {
-        return this._notebookService.getAll();
+        final List<Notebook> all = this._notebookService.getAll();
+        System.out.println(all.get(0).getId());
+        return all;
     }
 
     @RequestMapping(value = "/notebook/{id}", method = RequestMethod.GET)
