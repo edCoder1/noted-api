@@ -1,6 +1,6 @@
-package com.noted.api.api;
+package com.noted.api.controllers;
 
-import com.noted.api.api.DTO.NotebookDTO;
+import com.noted.api.controllers.DTO.NotebookDTO;
 import com.noted.api.model.Notebook;
 import com.noted.api.services.NotebookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
+
 
 @CrossOrigin
 @RestController
@@ -40,7 +43,7 @@ public class NotebookController {
     }
 
     @RequestMapping(value = "/notebook", method = RequestMethod.POST)
-    public Notebook createNotebook(@RequestBody NotebookDTO notebook) {
+    public Notebook createNotebook(@Valid @RequestBody NotebookDTO notebook) {
         return this._notebookService.createNotebook(notebook.name);
     }
 

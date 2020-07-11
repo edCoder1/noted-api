@@ -1,6 +1,6 @@
-package com.noted.api.api;
+package com.noted.api.controllers;
 
-import com.noted.api.api.DTO.NoteDTO;
+import com.noted.api.controllers.DTO.NoteDTO;
 import com.noted.api.model.Note;
 import com.noted.api.services.NoteService;
 import org.springframework.web.bind.annotation.*;
