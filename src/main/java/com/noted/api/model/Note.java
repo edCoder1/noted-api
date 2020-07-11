@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,7 +12,9 @@ import java.util.UUID;
 public class Note {
 
     @Id
+    @NotNull(message = "A Note must be created with an ID")
     private UUID id;
+    @NotNull(message = "A Note must contain a title")
     private String title;
     private String text;
 

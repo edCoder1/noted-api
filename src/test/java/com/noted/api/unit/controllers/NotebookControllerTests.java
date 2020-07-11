@@ -1,6 +1,6 @@
 package com.noted.api.unit.controllers;
 
-import com.noted.api.api.NotebookController;
+import com.noted.api.controllers.NotebookController;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
