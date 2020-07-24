@@ -6,10 +6,12 @@ import com.noted.api.services.NoteService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin
+//@CrossOrigin
 @RestController()
 @RequestMapping(value = "/api")
 public class NoteController {
@@ -30,9 +32,19 @@ public class NoteController {
         return this._notesService.getOneByID(id);
     }
 
+    @RequestMapping(value = "/note", method = RequestMethod.PUT)
+    public void updateNote(@Valid @RequestBody Note note){
+        this._notesService.updateNote(note);
+    }
+
+    @RequestMapping(value = "/note/{id}", method = RequestMethod.DELETE)
+    public Note deleteNotebook(@PathVariable String id) {
+        return this._notesService.deleteNote(id);
+    }
+
     @RequestMapping(value = "/note", method = RequestMethod.POST)
-    public UUID createNote(@RequestBody NoteDTO newNote) throws Throwable {
-        return this._notesService.createNote(newNote.title, newNote.text, newNote.notebook_id);
+    public Note createNote(@Valid @RequestBody NoteDTO newNote) throws Throwable {
+        return this._notesService.createNote(newNote.title, newNote.text, newNote.notebook);
     }
 
 }

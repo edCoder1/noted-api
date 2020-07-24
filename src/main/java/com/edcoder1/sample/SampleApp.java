@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SampleApp {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SampleApp.class, args);
-	}
+//	CONFLICTS WITH BUILDING PROCESS
+
+//	public static void main(String[] args) {
+//		SpringApplication.run(SampleApp.class, args);
+//	}
 
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		System.out.println("FFF");
 		return String.format("Hello-000 %s!", name);
 
 	}

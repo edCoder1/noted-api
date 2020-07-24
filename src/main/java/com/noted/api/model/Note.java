@@ -29,18 +29,6 @@ public class Note {
     public Note() {
     }
 
-    public Note(String title, String text, String notebookId) {
-        this.title = title;
-        this.text = text;
-        this.id = UUID.randomUUID();
-        this.lastModifiedOn = new Date();
-        // this.notebookId = notebookId;
-
-        // this.notebook.
-
-        // System.out.println(this.notebook.getNotes().toString());
-    }
-
     public Note(String title, String text, Notebook notebook) {
         this.title = title;
         this.text = text;
@@ -67,8 +55,32 @@ public class Note {
         return lastModifiedOn;
     }
 
+//    public Notebook getNotebook() {/**/
+//        return notebook;
+//    }
+
+//    public void setNotebook(Notebook notebook) {
+//        this.notebook = notebook;
+//    }
+
     // public String getNotebookId() {
     // return this.notebookId;
     // }
+
+//    public String getNotebookId() {
+//        return this.notebook.getId().toString();
+//    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setLastModifiedOn(Date lastModifiedOn) {
+        this.lastModifiedOn = lastModifiedOn;
+    }
 
 }

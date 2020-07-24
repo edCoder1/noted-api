@@ -1,6 +1,7 @@
 package com.noted.api.controllers;
 
 import com.noted.api.controllers.DTO.NotebookDTO;
+import com.noted.api.model.Note;
 import com.noted.api.model.Notebook;
 import com.noted.api.services.NotebookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping(value = "/api")
 public class NotebookController {
@@ -33,7 +34,6 @@ public class NotebookController {
     @RequestMapping(value = "/notebook/all", method = RequestMethod.GET)
     public List<Notebook> getAllNotebooks() {
         final List<Notebook> all = this._notebookService.getAll();
-        System.out.println(all.get(0).getId());
         return all;
     }
 
@@ -52,14 +52,19 @@ public class NotebookController {
         return this._notebookService.addNotes(id);
     }
 
-    @RequestMapping(value = "/notebook/{id}/{newName}", method = RequestMethod.PUT)
-    public Notebook updateNotebookName(@PathVariable String id, @PathVariable String newName) {
-        return this._notebookService.updateNotebook((id), newName);
+    @RequestMapping(value = "/notebook", method = RequestMethod.PUT)
+    public Notebook updateNotebookName(@Valid @RequestBody Notebook notebook) {
+        return this._notebookService.updateNotebook(notebook);
     }
 
     @RequestMapping(value = "/notebook/{id}", method = RequestMethod.DELETE)
     public Notebook deleteNotebook(@PathVariable String id) {
         return this._notebookService.deleteNotebook(id);
+    }
+
+    @RequestMapping(value = "/notebook/{id}/notes", method = RequestMethod.GET)
+    public List<Note> getNotesOfNotebook(@PathVariable String id) {
+        return this._notebookService.getNotesOfNotebook(id);
     }
 
 }

@@ -69,15 +69,17 @@ public class NotebookServiceTests {
         assertEquals("NEW ONE", savedNotebook.getName());
     }
 
-    @Test
+   @Test
     public void updateNotebook() {
 
-        final Notebook modifiedNotebook = this.service.updateNotebook("996171cc-93e4-4141-ae97-8d7da7ca0889", "ON");
+       final Notebook newNotebook = new Notebook("Notebook to update");
 
-        String actual = modifiedNotebook != null ? "ON" : null;
-        String expected = modifiedNotebook != null ? "ON" : null;
+       final Notebook modifiedNotebook = this.service.updateNotebook(newNotebook);
 
-        assertEquals(expected, actual);
+       String actual = modifiedNotebook != null ? "ON" : null;
+       String expected = modifiedNotebook != null ? "ON" : null;
+
+       assertEquals(expected, actual);
     }
 
     @Test
