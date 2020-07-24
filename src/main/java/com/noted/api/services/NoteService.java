@@ -1,11 +1,13 @@
 package com.noted.api.services;
 
+import com.noted.api.controllers.DTO.NoteDTO;
 import com.noted.api.model.Note;
 import com.noted.api.model.Notebook;
 import com.noted.api.db.NotesRepository;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,23 +20,11 @@ public class NoteService {
         this._noteRepository = noteRepository;
     }
 
-    public UUID createNote(String title, String text, String notebookId) throws Throwable{
-        try{
+    public Note createNote(String title, String text, Notebook selectedNotebook) throws Throwable {
             // Add note to notebook
-            Note createdNote = new Note(title, text, notebookId);
-
-
-            System.out.println(createdNote);
-            System.out.println(createdNote.getId());
-            System.out.println(createdNote.getTitle());
-            System.out.println(createdNote.getText());
-
+            Note createdNote = new Note(title, text, selectedNotebook);
             this._noteRepository.save(createdNote);
-
-            return createdNote.getId();
-        } catch (Throwable ex) {
-            throw new Throwable(ex);
-        }
+            return createdNote;
     }
 
     public void addNoteToNotebook(Note note, Notebook notebook){
@@ -52,5 +42,31 @@ public class NoteService {
         }
 
         return this._noteRepository.findById(UUID.fromString(id)).get();
+    }
+
+    public Note deleteNote(String id) {
+
+        Note note = this._noteRepository.findById(UUID.fromString(id)).orElse(null);
+
+        if (note != null) {
+            this._noteRepository.deleteById(UUID.fromString(id));
+        }
+
+        return note;
+    }
+
+    public void updateNote(Note note) {
+        //        ??? IS THIS GOOD
+
+        final Note noteToUpdate = this._noteRepository.findById(UUID.fromString(note.getId().toString())).orElse(null);
+
+        if (noteToUpdate != null) {
+            noteToUpdate.setTitle(note.getTitle());
+            noteToUpdate.setText(note.getText());
+            noteToUpdate.setLastModifiedOn(new Date());
+
+            this._noteRepository.save(noteToUpdate);
+        }
+
     }
 }

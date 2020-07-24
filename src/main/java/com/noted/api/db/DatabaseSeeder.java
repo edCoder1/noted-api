@@ -2,19 +2,29 @@ package com.noted.api.db;
 
 import com.noted.api.model.Note;
 import com.noted.api.model.Notebook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
+/**
+ * This component will only execute (and get initialized) if the property
+ * noted.db.recreate is set tp true in application.properties file
+ */
+
 @Component
+@ConditionalOnProperty(name = "noted.db.recreate", havingValue = "true")
 public class DatabaseSeeder implements CommandLineRunner {
 
+    @Autowired
     private NotebooksRepository _notebooksRepository;
+    @Autowired
     private NotesRepository _notesRepository;
 
-    public DatabaseSeeder(NotesRepository notesRepository, NotebooksRepository notebooksRepository) {
-        this._notesRepository = notesRepository;
-        this._notebooksRepository = notebooksRepository;
-    }
+//    public DatabaseSeeder(NotesRepository notesRepository, NotebooksRepository notebooksRepository) {
+//        this._notesRepository = notesRepository;
+//        this._notebooksRepository = notebooksRepository;
+//    }
 
     @Override
     public void run(String... args) {

@@ -3,6 +3,7 @@ package com.noted.api.services;
 import com.noted.api.db.NotebooksRepository;
 import com.noted.api.interfaces.INotebookService;
 import com.noted.api.model.Notebook;
+import com.noted.api.model.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,30 +40,23 @@ public class NotebookService implements INotebookService {
 
     public Notebook createNotebook(final String name) {
         final Notebook notebook = new Notebook(name);
-
-        System.out.println(notebook.getId());
-        System.out.println(notebook.getName());
-        System.out.println(notebook.getNotes());
-
         this._notebooksRepository.save(notebook);
 
         return notebook;
     }
 
-    public Notebook updateNotebook(String id, String newName) {
-        // Notebook notebooktoUpdate = this._notebooksRepository.save(notebook);
+    public Notebook updateNotebook(Notebook notebook) {
+
+         this._notebooksRepository.save(notebook);
 
         // better ?
-        Notebook notebook = this._notebooksRepository.findById(UUID.fromString(id)).orElse(null);
-
-        System.out.println(notebook);
-
-        if (notebook != null) {
-            System.out.println(notebook.getName());
-            notebook.setName(newName);
-            this._notebooksRepository.save(notebook);
-            System.out.println(notebook.getName());
-        }
+//        Notebook notebookToUpdate = this._notebooksRepository.findById(notebook.getId()).orElse(null);
+//
+//        if (notebook != null) {
+//            notebook.setName(notebook.getName());
+//            this._notebooksRepository.save(notebook);
+//            System.out.println(notebook.getName());
+//        }
 
         return notebook;
     }
@@ -71,10 +65,16 @@ public class NotebookService implements INotebookService {
         Notebook notebook = this._notebooksRepository.findById(UUID.fromString(id)).orElse(null);
 
         if (notebook != null) {
-            System.out.println(notebook.getName());
             this._notebooksRepository.deleteById(UUID.fromString(id));
         }
 
         return notebook;
+    }
+
+    public List<Note> getNotesOfNotebook(String id) {
+        final List<Note> notes = this._notebooksRepository.findById(UUID.fromString(id)).orElse(null).getNotes();
+//         may fail ???
+        return notes;
+
     }
 }
