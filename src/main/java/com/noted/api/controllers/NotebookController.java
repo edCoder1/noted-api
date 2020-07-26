@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 
-//@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/api")
 public class NotebookController {
@@ -45,11 +45,6 @@ public class NotebookController {
     @RequestMapping(value = "/notebook", method = RequestMethod.POST)
     public Notebook createNotebook(@Valid @RequestBody NotebookDTO notebook) {
         return this._notebookService.createNotebook(notebook.name);
-    }
-
-    @RequestMapping(value = "/notebook/addNotes/{id}", method = RequestMethod.POST) // Not complete
-    public Notebook addNotes(@PathVariable String id) {
-        return this._notebookService.addNotes(id);
     }
 
     @RequestMapping(value = "/notebook", method = RequestMethod.PUT)

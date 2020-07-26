@@ -22,7 +22,7 @@ public class Notebook {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "notebook", cascade = CascadeType.ALL)
-//    @JsonIgnore
+    @JsonIgnore     // Keeps @OneToMany Relationship when updating Notebook from frontend
     private List<Note> notes;
 
     // Required for @Entity
