@@ -1,0 +1,26 @@
+
+# NOTES ON PACKAGING API
+https://www.youtube.com/watch?v=C31gciKd7qo&list=PLVApX3evDwJ2keNFsQ4PhA1yVaXpto2oN&index=23
+
+Elias Khattar
+Hace 1 año
+Hi - thank you for those wonderful tutorials, regarding deployment and after watching a lot of Spring champions (Josh Long) they basically not use
+anymore WAR, it is only JAR files, will you by any chance record a video for JAR deployment? thanks again
+
+
+Romanian Coder
+
+Romanian Coder
+Romanian Coder
+Hace 1 año
+Hello and thank you for the encouragement. Deploying JAR files is pretty straight: java - jar yourapp.jar.
+This is all there is to it😊 Deploying war is a little more tedious, that's why I chose it for an episode.
+
+
+
+Elias Khattar
+Elias Khattar
+Hace 1 año
+@Romanian Coder Thank you for the clarification :), great work you have done there and waiting for the
+Spring Boot Security coding videos to see how we can implement it as I will have to add security for my app.thanks again.
+

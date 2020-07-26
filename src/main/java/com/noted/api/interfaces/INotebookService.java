@@ -9,7 +9,5 @@ public interface INotebookService {
 
     Notebook getById(String id);
 
-    Notebook addNotes(String id);
-
     Notebook createNotebook(String name);
 }

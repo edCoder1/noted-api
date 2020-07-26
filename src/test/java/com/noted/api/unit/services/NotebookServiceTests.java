@@ -55,11 +55,6 @@ public class NotebookServiceTests {
     }
 
     @Test
-    public void addNotes_BASIC() {
-        fail();
-    }
-
-    @Test
     public void createNotebook_BASIC() {
 
         final Notebook savedNotebook = this.service.createNotebook("NEW ONE");

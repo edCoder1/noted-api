@@ -30,14 +30,6 @@ public class NotebookService implements INotebookService {
         return this._notebooksRepository.findById(UUID.fromString(id)).get();
     }
 
-    public Notebook addNotes(final String id) {
-        if (!this._notebooksRepository.existsById(UUID.fromString(id))) {
-            return null;
-        }
-
-        return this._notebooksRepository.findById(UUID.fromString(id)).get();
-    }
-
     public Notebook createNotebook(final String name) {
         final Notebook notebook = new Notebook(name);
         this._notebooksRepository.save(notebook);
